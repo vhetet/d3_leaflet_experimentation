@@ -24,10 +24,14 @@ d3.json('./trips.json', data => {
         if (markers_obj[m['to_station_id']]) {
             markers_obj[m['to_station_id']].count++
         } else {
-            markers_obj[m['to_station_id']] = { long: parseFloat(m.to_longitude), lat: parseFloat(m.to_latitude), count: 1 }
+            markers_obj[m['to_station_id']] = { long: parseFloat(m.to_longitude), lat: parseFloat(m.to_latitude), count: 1, color: 'red' }
         }
     })
+
     markers = []
+    // add trip origin
+    markers.push({ long: parseFloat(from_long), lat: parseFloat(from_lat), count: 100, color: 'blue' })
+    // add trips destinations
     Object.keys(markers_obj).map(k => markers.push(markers_obj[k]))
 
     // Select the svg area and add circles:
@@ -37,31 +41,11 @@ d3.json('./trips.json', data => {
         .data(markers)
         .enter()
         .append("circle")
-        .attr("cx", function (d) {
-            return map.latLngToLayerPoint([d.lat, d.long]).x
-        }
-        )
-        .attr("cy", function (d) {
-            return map.latLngToLayerPoint([d.lat, d.long]).y
-        }
-        )
-        .attr("r", 5)
-        .style("fill", "red")
-        .attr("stroke", "red")
-        .attr("stroke-width", 3)
-        .attr("fill-opacity", .4)
-
-    d3.select("#mapid")
-        .select("svg")
-        .selectAll("myCircles")
-        .data(markers.slice(0,1))
-        .enter()
-        .append("circle")
-        .attr("cx", map.latLngToLayerPoint([from_lat, from_long]).x)
-        .attr("cy", map.latLngToLayerPoint([from_lat, from_long]).y)
-        .attr("r", 10)
-        .style("fill", "blue")
-        .attr("stroke", "blue")
+        .attr("cx", d => map.latLngToLayerPoint([d.lat, d.long]).x)
+        .attr("cy", d => map.latLngToLayerPoint([d.lat, d.long]).y)
+        .attr("r", d => Math.sqrt(d.count * 2))
+        .style("fill", d => d.color)
+        .attr("stroke", d => d.color)
         .attr("stroke-width", 3)
         .attr("fill-opacity", .4)
 
