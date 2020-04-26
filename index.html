@@ -1,27 +1,33 @@
+<!-- Code from d3-graph-gallery.com -->
 <!DOCTYPE html>
-<html>
+<meta charset="utf-8">
 
-<head>
-    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-</head>
+<!-- Load d3.js and the geo projection plugin -->
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
 
-<body>
-    <p>D3 Tutorials</p>
-    <p></p>
-    <p></p>
-    <script>
+<!-- Load Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+  integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+  crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+  integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+  crossorigin=""></script>
 
-        var myData = ["Hello World!", "test", "Hello World!", "test"];
+<!-- Create an element where the map will take place -->
+<div id="mapid"></div>
 
-        var p = d3.select("body")
-            .selectAll("p")
-            .data(myData)
-            .text(function (d, i) {
-                return d;
-            })
-            .exit()
-            .remove();
-    </script>
-</body>
+<style>
+  html {
+    height: 100%
+  }
 
-</html>
+  body {
+    height: 100%
+  }
+
+  #mapid {
+    height: 100%;
+  }
+</style>
+<script src="create_map.js"></script>

@@ -1,4 +1,3 @@
-console.log('test')
 
 
 var map = L
@@ -28,10 +27,8 @@ d3.json('./trips.json', data => {
             markers_obj[m['to_station_id']] = { long: parseFloat(m.to_longitude), lat: parseFloat(m.to_latitude), count: 1 }
         }
     })
-    console.log(markers_obj)
     markers = []
     Object.keys(markers_obj).map(k => markers.push(markers_obj[k]))
-    console.log(markers)
 
     // Select the svg area and add circles:
     d3.select("#mapid")
@@ -41,7 +38,6 @@ d3.json('./trips.json', data => {
         .enter()
         .append("circle")
         .attr("cx", function (d) {
-            console.log(d)
             return map.latLngToLayerPoint([d.lat, d.long]).x
         }
         )

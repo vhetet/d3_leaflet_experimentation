@@ -8,12 +8,20 @@ The data is coming from [Chicago open data site](https://data.cityofchicago.org)
 
 I used [this example](https://www.d3-graph-gallery.com/graph/bubblemap_leaflet_basic.html) from the d3-graph-gallery
 
+### How to run the site
+
+Install dependencies: 
+
+`npm i`
+
+Install server (if you don't have one already):
+
 To run this you need a web server. I used `serve` that I have installed globally on my machine.
 If you want to do the same:
 
 `npm i -g serve`
 
-run the site
+run the site:
 
 `serve`
 
